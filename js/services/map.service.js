@@ -1,4 +1,4 @@
-
+'use strict'
 
 export const mapService = {
     initMap,
@@ -6,6 +6,9 @@ export const mapService = {
     panTo,
     getClickedCord,
 }
+
+window.onCenterMapOnUsrPos = onCenterMapOnUsrPos;
+
 
 var gMap;
 var gClickedCord = { lat: 32.0749831, lng: 34.9120554 }
@@ -37,7 +40,28 @@ function getClickedCord () {
     return gClickedCord
 }
 
+function onCenterMapOnUsrPos() {
 
+    const success = (position) => {
+     var lat = position.coords.latitude
+     var lng = position.coords.longitude
+      console.log('latitude:', lat, 'longitude:', lng);
+  
+      gMap.setCenter(new google.maps.LatLng(lat, lng))
+  
+      const pos = { lat, lng }
+  
+      addMarker(pos, gMap)
+  
+    }
+  
+    const failure = (position) => {
+      console.log(position);
+    }
+  
+    navigator.geolocation.getCurrentPosition(success, failure)
+
+}
 
 
 
@@ -50,6 +74,7 @@ function addMarker(loc) {
         title: 'Hello World!'
     });
     // to do: save to locations
+
     return marker;
 }
 

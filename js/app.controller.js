@@ -8,6 +8,8 @@ window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.renderLocations = renderLocations;
 window.onDelete = onDelete;
+window.onCenterMapOnUsrPos = onCenterMapOnUsrPos;
+
 
 function onInit() {
     renderLocations()
@@ -49,9 +51,7 @@ function getPosition() {
 }
 
 function onAddMarker() {
-    // debugger
     console.log('Adding a marker');
-    // var cords = mapService.getClickedCord()
     mapService.addMarker(mapService.getClickedCord());
 }
 
@@ -69,6 +69,7 @@ function onGetUserPos() {
             console.log('User position is:', pos.coords);
             document.querySelector('.user-pos').innerText =
                 `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
+                // 
         })
         .catch(err => {
             console.log('err!!!', err);
@@ -83,3 +84,5 @@ function onDelete(idx) {
     locService.deleteLocation(idx);
     renderLocations();
 }
+
+

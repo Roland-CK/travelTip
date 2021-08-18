@@ -1,0 +1,14 @@
+* {
+    box-sizing: border-box;
+}
+
+.map-center-btn {
+    position: absolute;
+    top: 20px;
+    cursor: pointer;
+    right: 5px;
+}
+
+.map-center-btn-img {
+    width: 30px;
+}
