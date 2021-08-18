@@ -5,9 +5,10 @@ export const mapService = {
     addMarker,
     panTo,
     getClickedCord,
+    setMapOnUsrLoc,
 }
 
-window.onCenterMapOnUsrPos = onCenterMapOnUsrPos;
+window.onCenterMapOnUsrPos = setMapOnUsrLoc;
 
 
 var gMap;
@@ -41,7 +42,7 @@ function getClickedCord () {
     return gClickedCord
 }
 
-function onCenterMapOnUsrPos() {
+function setMapOnUsrLoc() {
 
     const success = (position) => {
      var lat = position.coords.latitude
@@ -53,7 +54,6 @@ function onCenterMapOnUsrPos() {
       const pos = { lat, lng }
   
       addMarker(pos, gMap)
-  
     }
   
     const failure = (position) => {
