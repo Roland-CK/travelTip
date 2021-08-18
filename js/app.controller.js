@@ -116,18 +116,10 @@ function onSearch(ev = null) {
         })
         .then ((latln) => {
         console.log('lat :' , latln.lat , 'lng : ', latln.lng)
-        // lat = 
         mapService.panTo(latln.lat, latln.lng)
         })
 }
 
-
-
-
-// google.maps.Geocoder.Geocode()
-// https://maps.googleapis.com/maps/api/geocode/json?${userAddress}
-
-// https://maps.googleapis.com/maps/api/geocode/json?address=${userAddress}&key=YOUR_API_KEY
     
 
 

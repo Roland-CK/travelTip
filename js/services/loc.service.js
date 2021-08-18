@@ -44,10 +44,10 @@ function deleteLocation(idx) {
 
 
 function updateLocationName(idx, newName){
-const locs = gLocations.find(loc => {
-    return loc.idx === idx.placeName;
-})
-locs.placeName = newName;
+    
+const location = gLocations[idx]
+console.log('locs :' , location);
+location.placeName = newName;
 storageService.save(KEY, gLocations)
 }
 
