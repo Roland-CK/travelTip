@@ -34,7 +34,7 @@ function renderLocations() {
                 <td>${location.lat}</td>
                 <td>${location.lng}</td>
                 <td class="go-td"><button class="go-btn" data-lat="${location.lat
-                 }" data-lng="${location.lng}" >Go</button></td>
+                 }" data-lng="${location.lng}" onclick="onPanTo(this.dataset.lat,this.dataset.lng)" >Go</button></td>
                 <td><button class="delete-btn" data-idx="${idx}" onclick="onDelete(this.dataset.idx)">Delete</button></td>
             </tr>
           `;
@@ -54,6 +54,9 @@ function getPosition() {
 function onAddMarker() {
     console.log('Adding a marker');
     mapService.addMarker(mapService.getClickedCord());
+    const placeName = prompt('Enter location name')
+    locService.addLocation(mapService.getClickedCord(),placeName);
+    renderLocations()
 }
 
 function onGetLocs() {
@@ -70,15 +73,16 @@ function onGetUserPos() {
             console.log('User position is:', pos.coords);
             document.querySelector('.user-pos').innerText =
                 `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
-                // 
+
         })
         .catch(err => {
             console.log('err!!!', err);
         })
 }
-function onPanTo() {
+
+function onPanTo(lat,lng) {
     console.log('Panning the Map');
-    mapService.panTo(35.6895, 139.6917);
+    mapService.panTo(lat,lng);
 }
 
 function onDelete(idx) {

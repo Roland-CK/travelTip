@@ -11,18 +11,12 @@ export const locService = {
 }
 
 
-// const locs = [
-//     { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
-//     { name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
-// ]
-
-
 const gLocations = [
     {
         lat:31.781646776490927,
         lng:34.65058981550658,
-        name:'Dan',
-        createdAt:'',
+        placeName:'Dan',
+        createdAt:new Date().toLocaleString(),
         updatedAt:'',
     },
 ]
@@ -31,20 +25,20 @@ function getLocations() {
     return gLocations;
 }
 
-function addLocation(lat, lng, name){
+function addLocation(latlng,placeName){
+    console.log(latlng, placeName);
+
     //Don't forget to check if user did not entred name...
-    gLocations.push(_createLocation(lat, lng, name));
+    gLocations.push(_createLocation(latlng.lat.toFixed(4), latlng.lng.toFixed(4)),placeName);
     return gLocations;
 }
 
 
-function _createLocation(name,lat,lng) {
+function _createLocation(lat,lng,placeName) {
     return {
         lat,
         lng,
-        name,
-        createdAt,
-        updatedAt,
+        placeName,
     };
 }
 

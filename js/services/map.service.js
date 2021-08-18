@@ -29,6 +29,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             gMap.addListener("click", (mapsMouseEvent) => {
 
                 // gClickedCord = JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+                // locService.addLocation(mapsMouseEvent.latLng.lat(), mapsMouseEvent.latLng.lng());
                 gClickedCord = mapsMouseEvent.latLng.toJSON()
                 console.log('gClickedCord', gClickedCord);
                 // let locName = prompt('Save location?')
