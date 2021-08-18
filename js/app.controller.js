@@ -9,6 +9,7 @@ window.onGetUserPos = onGetUserPos;
 window.renderLocations = renderLocations;
 window.onDelete = onDelete;
 window.onCenterMapOnUsrLoc = onCenterMapOnUsrLoc;
+window.onAddLocation = onAddLocation;
 
 
 function onInit() {
@@ -29,7 +30,7 @@ function renderLocations() {
         return `
             <tr>
                 <td>${idx + 1}</td>
-                <td>${location.name}</td>
+                <td>${location.placeName}</td>
                 <td>${location.lat}</td>
                 <td>${location.lng}</td>
                 <td class="go-td"><button class="go-btn" data-lat="${location.lat
@@ -53,8 +54,8 @@ function getPosition() {
 function onAddMarker() {
     console.log('Adding a marker');
     mapService.addMarker(mapService.getClickedCord());
-    const placeName = prompt('Enter location name')
-    locService.addLocation(mapService.getClickedCord(),placeName);
+    var placeName = prompt('Enter location name')
+    locService.addLocation(mapService.getClickedCord(), placeName);
     renderLocations()
 }
 
@@ -92,4 +93,9 @@ function onDelete(idx) {
 
 function onCenterMapOnUsrLoc () {
     mapService.setMapOnUsrLoc()
+}
+
+function onAddLocation() {
+    console.log('adding location..');
+    
 }
