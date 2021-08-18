@@ -31,16 +31,16 @@ function getLocations() {
     return gLocations;
 }
 
-function addLocation(lat, lng, name){
-    console.log(lat, lng, name);
+function addLocation(lat, lng){
+    console.log(lat);
 
     //Don't forget to check if user did not entred name...
-    gLocations.push(_createLocation(lat, lng, name));
+    gLocations.push(_createLocation(lat, lng));
     return gLocations;
 }
 
 
-function _createLocation(name,lat,lng) {
+function _createLocation(lat,lng) {
     return {
         lat,
         lng,

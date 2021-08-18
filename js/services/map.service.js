@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { locService } from './loc.service.js'
-=======
 'use strict'
->>>>>>> 21d84d413b7bc9814d272de44a434107d82141aa
 
 export const mapService = {
     initMap,
@@ -45,8 +41,6 @@ function getClickedCord () {
     return gClickedCord
 }
 
-<<<<<<< HEAD
-=======
 function onCenterMapOnUsrPos() {
 
     const success = (position) => {
@@ -73,7 +67,6 @@ function onCenterMapOnUsrPos() {
 
 
 
->>>>>>> 21d84d413b7bc9814d272de44a434107d82141aa
 function addMarker(loc) {
     console.log(loc);
     var marker = new google.maps.Marker({
