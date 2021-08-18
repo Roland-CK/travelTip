@@ -8,7 +8,7 @@ window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
 window.renderLocations = renderLocations;
 window.onDelete = onDelete;
-window.onCenterMapOnUsrPos = onCenterMapOnUsrPos;
+window.onCenterMapOnUsrLoc = onCenterMapOnUsrLoc;
 
 
 function onInit() {
@@ -86,3 +86,6 @@ function onDelete(idx) {
 }
 
 
+function onCenterMapOnUsrLoc () {
+    mapService.setMapOnUsrLoc()
+}
