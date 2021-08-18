@@ -21,7 +21,7 @@ const gLocations = [
         lat:31.781646776490927,
         lng:34.65058981550658,
         name:'Dan',
-        createdAt:'',
+        createdAt:new Date().toLocaleString(),
         updatedAt:'',
     },
 ]
@@ -31,6 +31,8 @@ function getLocations() {
 }
 
 function addLocation(lat, lng, name){
+    console.log(lat, lng, name);
+
     //Don't forget to check if user did not entred name...
     gLocations.push(_createLocation(lat, lng, name));
     return gLocations;
@@ -42,8 +44,6 @@ function _createLocation(name,lat,lng) {
         lat,
         lng,
         name,
-        createdAt,
-        updatedAt,
     };
 }
 

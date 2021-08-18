@@ -1,4 +1,4 @@
-
+import { locService } from './loc.service.js'
 
 export const mapService = {
     initMap,
@@ -24,6 +24,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             // Configure the click listener.
             gMap.addListener("click", (mapsMouseEvent) => {
                 // gClickedCord = JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+                // locService.addLocation(mapsMouseEvent.latLng.lat(), mapsMouseEvent.latLng.lng());
                 gClickedCord = mapsMouseEvent.latLng.toJSON()
                 console.log('gClickedCord', gClickedCord);
             });
@@ -36,11 +37,6 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
 function getClickedCord () {
     return gClickedCord
 }
-
-
-
-
-
 
 function addMarker(loc) {
     console.log(loc);

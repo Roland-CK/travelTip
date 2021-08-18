@@ -49,10 +49,9 @@ function getPosition() {
 }
 
 function onAddMarker() {
-    // debugger
     console.log('Adding a marker');
-    // var cords = mapService.getClickedCord()
     mapService.addMarker(mapService.getClickedCord());
+
 }
 
 function onGetLocs() {
