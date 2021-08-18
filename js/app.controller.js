@@ -1,6 +1,6 @@
 import { locService } from './services/loc.service.js'
 import { mapService } from './services/map.service.js'
-console.log('controller');
+
 window.onload = onInit;
 window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
@@ -10,6 +10,7 @@ window.renderLocations = renderLocations;
 window.onDelete = onDelete;
 window.onCenterMapOnUsrLoc = onCenterMapOnUsrLoc;
 window.onAddLocation = onAddLocation;
+window.onUpdateLocation = onUpdateLocation;
 
 
 function onInit() {
@@ -36,6 +37,8 @@ function renderLocations() {
                 <td class="go-td"><button class="go-btn" data-lat="${location.lat
                  }" data-lng="${location.lng}" onclick="onPanTo(this.dataset.lat,this.dataset.lng)" >Go</button></td>
                 <td><button class="delete-btn" data-idx="${idx}" onclick="onDelete(this.dataset.idx)">Delete</button></td>
+                <td><button class="update-btn" data-idx="${idx}" onclick="onUpdateLocation(this.dataset.idx)">Update</button></td>
+
             </tr>
           `;
 
@@ -98,4 +101,11 @@ function onCenterMapOnUsrLoc () {
 function onAddLocation() {
     console.log('adding location..');
     
+}
+
+function onUpdateLocation(idx) {
+    console.log(idx);
+    const newName = prompt('Enter new location Name: ');
+    locService.updateLocationName(idx,newName)
+    renderLocations();
 }
