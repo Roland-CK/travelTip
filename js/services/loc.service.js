@@ -7,6 +7,7 @@ export const locService = {
     getLocations,
     addLocation,
     deleteLocation,
+    
 }
 
 
