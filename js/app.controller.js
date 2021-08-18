@@ -10,7 +10,7 @@ window.renderLocations = renderLocations;
 window.onDelete = onDelete;
 window.onCenterMapOnUsrLoc = onCenterMapOnUsrLoc;
 window.onAddLocation = onAddLocation;
-
+window.onSearch = onSearch;
 
 function onInit() {
     renderLocations()
@@ -19,7 +19,7 @@ function onInit() {
             console.log('Map is ready');
 
         })
-        
+
         .catch(() => console.log('Error: cannot init map'));
 }
 
@@ -33,8 +33,8 @@ function renderLocations() {
                 <td>${location.placeName}</td>
                 <td>${location.lat}</td>
                 <td>${location.lng}</td>
-                <td class="go-td"><button class="go-btn" data-lat="${location.lat
-                 }" data-lng="${location.lng}" onclick="onPanTo(this.dataset.lat,this.dataset.lng)" >Go</button></td>
+                <td class="go-td"><button class="go-btn" data-lat="${location.lat}" 
+                data-lng="${location.lng}" onclick="onPanTo(this.dataset.lat,this.dataset.lng)" >Go</button></td>
                 <td><button class="delete-btn" data-idx="${idx}" onclick="onDelete(this.dataset.idx)">Delete</button></td>
             </tr>
           `;
@@ -80,9 +80,9 @@ function onGetUserPos() {
         })
 }
 
-function onPanTo(lat,lng) {
+function onPanTo(lat, lng) {
     console.log('Panning the Map');
-    mapService.panTo(lat,lng);
+    mapService.panTo(lat, lng);
 }
 
 function onDelete(idx) {
@@ -91,11 +91,36 @@ function onDelete(idx) {
 }
 
 
-function onCenterMapOnUsrLoc () {
+function onCenterMapOnUsrLoc() {
     mapService.setMapOnUsrLoc()
 }
 
 function onAddLocation() {
     console.log('adding location..');
-    
+
 }
+
+
+function onSearch(ev = null) {
+    if (ev) ev.preventDefault();
+    const elInputSearch = document.querySelector('input[name=search]');
+    const prm = fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${elInputSearch.value}&key=AIzaSyBNOQNCVbz75NPLU1FDoJXA7Twh2rmjXSE`)
+        .then((res) => res.json())
+        .then((location) =>  {
+            console.log('Location res:', location.results[0].geometry.location)
+            return location.results[0].geometry.location
+        })
+        .then ((latln) => {
+        console.log('lat :' , latln.lat , 'lng : ', latln.lng)
+        // lat = 
+        mapService.panTo(latln.lat, latln.lng)
+        })
+}
+
+
+
+
+// google.maps.Geocoder.Geocode()
+// https://maps.googleapis.com/maps/api/geocode/json?${userAddress}
+
+// https://maps.googleapis.com/maps/api/geocode/json?address=${userAddress}&key=YOUR_API_KEY
