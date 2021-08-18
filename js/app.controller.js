@@ -50,10 +50,11 @@ function getPosition() {
     })
 }
 
-function onAddMarker(lat,lng) {
+function onAddMarker() {
     console.log('Adding a marker');
-    mapService.addMarker(mapService.getClickedCord(lat,lng));
-    locService.addLocation(lat,lng);
+    mapService.addMarker(mapService.getClickedCord());
+    const placeName = prompt('Enter location name')
+    locService.addLocation(mapService.getClickedCord(),placeName);
     renderLocations()
 }
 
@@ -71,7 +72,7 @@ function onGetUserPos() {
             console.log('User position is:', pos.coords);
             document.querySelector('.user-pos').innerText =
                 `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
-                // 
+
         })
         .catch(err => {
             console.log('err!!!', err);
