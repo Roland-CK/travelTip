@@ -12,6 +12,7 @@ function onInit() {
         .then(() => {
             console.log('Map is ready');
         })
+        
         .catch(() => console.log('Error: cannot init map'));
 }
 
@@ -24,8 +25,10 @@ function getPosition() {
 }
 
 function onAddMarker() {
+    // debugger
     console.log('Adding a marker');
-    mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
+    // var cords = mapService.getClickedCord()
+    mapService.addMarker(mapService.getClickedCord());
 }
 
 function onGetLocs() {

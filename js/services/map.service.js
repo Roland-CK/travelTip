@@ -3,10 +3,12 @@
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+    getClickedCord,
 }
 
 var gMap;
+var gClickedCord = { lat: 32.0749831, lng: 34.9120554 }
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     console.log('InitMap');
@@ -19,15 +21,35 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 zoom: 15
             })
             console.log('Map!', gMap);
+            // Configure the click listener.
+            gMap.addListener("click", (mapsMouseEvent) => {
+                // gClickedCord = JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+                gClickedCord = mapsMouseEvent.latLng.toJSON()
+                console.log('gClickedCord', gClickedCord);
+            });
+
         })
+
 }
 
+
+function getClickedCord () {
+    return gClickedCord
+}
+
+
+
+
+
+
 function addMarker(loc) {
+    console.log(loc);
     var marker = new google.maps.Marker({
         position: loc,
         map: gMap,
         title: 'Hello World!'
     });
+    // to do: save to locations
     return marker;
 }
 
@@ -40,7 +62,7 @@ function panTo(lat, lng) {
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = ''; //TODO: Enter your API Key
+    const API_KEY = 'AIzaSyCQIIl72FNzgUMFnSD9dLHYIrFTznZkELA'; //TODO: Enter your API Key
     var elGoogleApi = document.createElement('script');
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
     elGoogleApi.async = true;
@@ -51,3 +73,4 @@ function _connectGoogleApi() {
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
 }
+
