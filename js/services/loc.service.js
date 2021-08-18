@@ -26,15 +26,15 @@ function getLocations() {
 }
 
 function addLocation(latlng,placeName){
-    console.log(latlng, placeName);
-
-    //Don't forget to check if user did not entred name...
-    gLocations.push(_createLocation(latlng.lat.toFixed(4), latlng.lng.toFixed(4)),placeName);
+    console.log('addLocation',placeName);
+    gLocations.push(_createLocation(latlng.lat.toFixed(4), latlng.lng.toFixed(4), placeName));
     return gLocations;
 }
 
 
 function _createLocation(lat,lng,placeName) {
+    console.log('_createLocation',placeName);
+
     return {
         lat,
         lng,
